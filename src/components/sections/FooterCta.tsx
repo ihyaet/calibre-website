@@ -1,131 +1,181 @@
-import React from "react";
-import { AnimatedHeadline } from "@/components/ui/AnimatedHeadline";
+import Image from "next/image";
 import { CtaButton } from "@/components/ui/CtaButton";
-import { GhostWord } from "@/components/ui/GhostWord";
-import { LcdDisplay } from "@/components/ui/LcdDisplay";
-import { RuledLines } from "@/components/ui/RuledLines";
 import { FOOTER_NAV } from "@/data/footer-nav";
 import { FacebookLogo, InstagramLogo, LinkedinLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 
 export function FooterCta() {
   return (
-    <footer aria-label="Footer">
-      {/* Dark top band — typewriter headline */}
-      <div className="bg-plum text-on-plum py-[clamp(4rem,8vw,8rem)] border-t border-line-plum relative overflow-hidden">
-        <div className="max-w-screen-xl mx-auto px-6 lg:px-12 flex flex-col gap-6 relative z-10">
-          <RuledLines dark />
-          <AnimatedHeadline
-            as="h2"
-            typewriter
-            className="text-on-plum leading-[1.05] tracking-tight"
-            style={{ fontSize: "var(--text-display)" } as React.CSSProperties}
+    <footer aria-label="Footer" className="relative">
+
+      {/* Dark top band — headline framed by ruled lines */}
+      <div className="relative text-on-plum" style={{ background: "#110311" }}>
+        <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pt-[clamp(4rem,7vw,7rem)]">
+          <h2
+            className="font-mono text-center text-white py-10"
+            style={{ fontSize: "clamp(40px, 8vw, 88px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "-0.03em" }}
           >
-            Engineered for the hour before the world catches up
-          </AnimatedHeadline>
-          <RuledLines dark />
-        </div>
-      </div>
+            <span className="relative block">
+              Engineered for the
+              <span
+                className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
+                style={{ background: "rgba(255,255,255,0.4)" }}
+                aria-hidden="true"
+              />
+            </span>
+            <span className="relative block">
+              hour before the world
+              <span
+                className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
+                style={{ background: "rgba(255,255,255,0.4)" }}
+                aria-hidden="true"
+              />
+            </span>
+            <span className="relative block">
+              catches up
+              <span
+                className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
+                style={{ background: "rgba(255,255,255,0.4)" }}
+                aria-hidden="true"
+              />
+            </span>
+          </h2>
 
-      {/* Diagonal split — light section with keyboard + CTA */}
-      <div
-        className="relative overflow-hidden"
-        style={{
-          background: "linear-gradient(170deg, #1E0D22 50%, var(--color-paper) 50%)",
-        }}
-        aria-label="Shop now section"
-      >
-        <div className="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 py-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-          {/* Ghost wordmark */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center">
-            <GhostWord text="Creative Workflow" className="opacity-[0.05] text-on-plum" />
-          </div>
-
-          {/* Keyboard placeholder */}
-          <div className="relative flex-1 z-10">
-            <div
-              className="w-full aspect-[16/9] border border-line-plum bg-plum-elev flex flex-col justify-end p-4"
-              aria-label="Calibre keyboard with hand typing, LCD showing app dock"
-            >
-              <span className="font-mono text-[length:var(--text-label)] text-mute-plum uppercase tracking-widest mb-2">
-                App dock mode
-              </span>
-              <LcdDisplay state="dock" />
-            </div>
-            <div className="absolute -bottom-4 -right-4 z-20">
-              <CtaButton href="#" size="lg" />
-            </div>
-          </div>
-
-          {/* Right: body copy */}
-          <div className="flex-1 z-10 flex flex-col gap-6">
-            <p className="font-sans text-ink/70 leading-relaxed" style={{ fontSize: "var(--text-body)" }}>
-              Every key, considered. A screen that whispers — never shouts. Engineered for people who think in long, unbroken stretches.
-            </p>
+          {/* Shop Now knob — anchored to this 1440px container, hangs below */}
+          <div className="absolute left-5 sm:left-8 lg:left-10 z-20" style={{ bottom: "clamp(-552px, calc(-150px - 25vw), -150px)" }}>
+            <CtaButton href="#" size="lg" />
           </div>
         </div>
       </div>
 
-      {/* Footer nav */}
-      <div className="bg-paper border-t border-line py-16">
-        <div className="max-w-screen-xl mx-auto px-6 lg:px-12 grid grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand column */}
-          <div className="col-span-2 lg:col-span-1 flex flex-col gap-4">
-            <span className="font-mono text-ink text-lg font-semibold">Calibre.</span>
-            <p className="font-sans text-mute" style={{ fontSize: "var(--text-small)" }}>
-              A smarter workspace for designers, editors, streamers, and digital creators.
-            </p>
-            <div className="flex gap-4 mt-2">
-              <a href="#" aria-label="Facebook" className="text-mute hover:text-ink transition-colors">
-                <FacebookLogo size={20} />
+      {/* CTA + footer with cta-footer.png as background */}
+      <div className="relative" style={{ background: "#F2EFEC" }}>
+        {/* Background image */}
+        <Image
+          src="/cta-footer.png"
+          alt=""
+          fill
+          aria-hidden="true"
+          className="object-cover object-center select-none pointer-events-none"
+          priority={false}
+        />
+
+        {/* Foreground content */}
+        <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pb-10 flex flex-col" style={{ minHeight: "min(110vh, 1100px)" }}>
+
+          {/* Spacer to let the bg keyboard breathe */}
+          <div className="flex-1" />
+
+          {/* Blank spacer */}
+          <div style={{ height: "clamp(200px, 35vw, 500px)" }} aria-hidden="true" />
+
+          {/* Giant ghost marquee */}
+          <div
+            className="relative overflow-hidden"
+            style={{ marginLeft: "-10vw", marginRight: "-10vw", marginTop: "clamp(120px, 22vw, 300px)" }}
+            aria-hidden="true"
+          >
+            <div className="flex whitespace-nowrap calibre-footer-marquee">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="font-mono text-white shrink-0 pr-[0.3em]"
+                  style={{
+                    fontSize: "clamp(96px, 22vw, 268px)",
+                    fontWeight: 300,
+                    letterSpacing: "-0.06em",
+                    lineHeight: 1,
+                    opacity: 0.2,
+                  }}
+                >
+                  Creative Workflow, Simplified
+                </span>
+              ))}
+            </div>
+            <style>{`
+              @keyframes calibre-footer-marquee-scroll {
+                from { transform: translate3d(0,0,0); }
+                to { transform: translate3d(-50%,0,0); }
+              }
+              .calibre-footer-marquee {
+                animation: calibre-footer-marquee-scroll 60s linear infinite;
+                will-change: transform;
+              }
+              @media (prefers-reduced-motion: reduce) {
+                .calibre-footer-marquee { animation: none; }
+              }
+            `}</style>
+          </div>
+
+          {/* Footer row — subcopy+socials on left, nav columns on right */}
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 pt-16 text-white">
+
+            {/* Left: subcopy + socials */}
+            <div className="flex flex-col gap-6">
+              <p
+                className="font-sans max-w-[380px]"
+                style={{ fontSize: "16px", lineHeight: 1.6 }}
+              >
+                Every key, considered. A screen that whispers — never shouts. Engineered for people who think in long, unbroken stretches.
+              </p>
+              <div className="flex gap-5 mt-2">
+                <a href="#" aria-label="Facebook" className="hover:opacity-70 transition-opacity">
+                  <FacebookLogo size={22} weight="fill" />
+                </a>
+                <a href="#" aria-label="Instagram" className="hover:opacity-70 transition-opacity">
+                  <InstagramLogo size={22} />
+                </a>
+                <a href="#" aria-label="LinkedIn" className="hover:opacity-70 transition-opacity">
+                  <LinkedinLogo size={22} weight="fill" />
+                </a>
+                <a href="#" aria-label="YouTube" className="hover:opacity-70 transition-opacity">
+                  <YoutubeLogo size={22} weight="fill" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: nav columns wrapped together with 40px gap */}
+            <div className="flex" style={{ gap: "40px" }}>
+              {FOOTER_NAV.map((col) => (
+                <div key={col.heading} className="flex flex-col gap-4">
+                  <span
+                    className="font-sans text-white/70"
+                    style={{ fontSize: "15px" }}
+                  >
+                    {col.heading}
+                  </span>
+                  <ul className="flex flex-col gap-3">
+                    {col.links.map((link) => (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          className="font-sans hover:opacity-70 transition-opacity"
+                          style={{ fontSize: "15px" }}
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t text-white" style={{ borderColor: "rgba(255,255,255,0.15)" }}>
+            <span className="font-mono text-white/70" style={{ fontSize: "13px" }}>
+              © 2026 Calibre Inc.
+            </span>
+            <div className="flex gap-8">
+              <a href="#" className="font-sans text-white/70 hover:text-white transition-colors" style={{ fontSize: "13px" }}>
+                Cookies Policy
               </a>
-              <a href="#" aria-label="Instagram" className="text-mute hover:text-ink transition-colors">
-                <InstagramLogo size={20} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="text-mute hover:text-ink transition-colors">
-                <LinkedinLogo size={20} />
-              </a>
-              <a href="#" aria-label="YouTube" className="text-mute hover:text-ink transition-colors">
-                <YoutubeLogo size={20} />
+              <a href="#" className="font-sans text-white/70 hover:text-white transition-colors" style={{ fontSize: "13px" }}>
+                Privacy Policy
               </a>
             </div>
           </div>
 
-          {/* Nav columns */}
-          {FOOTER_NAV.map((col) => (
-            <div key={col.heading} className="flex flex-col gap-4">
-              <span className="font-mono text-[length:var(--text-label)] text-ink uppercase tracking-widest">
-                {col.heading}
-              </span>
-              <ul className="flex flex-col gap-2">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="font-sans text-mute hover:text-ink transition-colors"
-                      style={{ fontSize: "var(--text-small)" }}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom bar */}
-        <div className="max-w-screen-xl mx-auto px-6 lg:px-12 mt-12 pt-6 border-t border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <span className="font-mono text-[length:var(--text-label)] text-mute">
-            © 2025 Calibre Inc.
-          </span>
-          <div className="flex gap-6">
-            <a href="#" className="font-sans text-mute hover:text-ink transition-colors" style={{ fontSize: "var(--text-label)" }}>
-              Cookies Policy
-            </a>
-            <a href="#" className="font-sans text-mute hover:text-ink transition-colors" style={{ fontSize: "var(--text-label)" }}>
-              Privacy Policy
-            </a>
-          </div>
         </div>
       </div>
     </footer>

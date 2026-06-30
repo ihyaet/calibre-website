@@ -1,89 +1,97 @@
-import { GhostWord } from "@/components/ui/GhostWord";
-import { LcdDisplay } from "@/components/ui/LcdDisplay";
-import { SectionDivider } from "@/components/ui/SectionDivider";
-import { RuledLines } from "@/components/ui/RuledLines";
+import Image from "next/image";
 
 export function CreativeWorkflow() {
   return (
     <section
-      className="relative overflow-hidden py-[clamp(6rem,12vw,12rem)]"
-      style={{ background: "var(--wash)" }}
+      className="relative overflow-hidden"
+      style={{ marginBottom: "-100px" }}
       aria-labelledby="workflow-heading"
     >
-      {/* Purple band accents */}
-      <div
-        className="absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #E8DFFE, transparent)" }}
+      {/* Background */}
+      <Image
+        src="/var-bg.png"
+        alt=""
+        fill
         aria-hidden="true"
+        className="object-cover -z-10 select-none pointer-events-none"
       />
+
+      {/* Bottom overlay — fade to next section */}
       <div
-        className="absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #E8DFFE, transparent)" }}
+        className="absolute left-0 right-0 bottom-0 pointer-events-none z-0"
+        style={{ height: "600px", background: "linear-gradient(to bottom, rgba(42,7,42,0), #2A072A 70%)" }}
         aria-hidden="true"
       />
 
-      {/* Ghost wordmark */}
-      <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none">
-        <GhostWord text="Everyday Tools" className="-translate-x-24" />
-      </div>
+      <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pt-20 flex flex-col">
 
-      <div className="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 flex flex-col gap-12">
-        {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        {/* Top row */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-10 pb-10">
           <h2
             id="workflow-heading"
-            className="font-mono text-ink leading-tight tracking-tight"
-            style={{ fontSize: "var(--text-h1)" }}
+            className="font-mono text-ink"
+            style={{ fontSize: "clamp(1.25rem, 2vw, 1.75rem)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.2 }}
           >
-            Where Creativity
-            <br />
-            Meets Control
+            Where Creativity Meets Control
           </h2>
           <p
-            className="font-sans text-mute max-w-xs sm:text-right"
-            style={{ fontSize: "var(--text-small)" }}
+            className="font-sans text-ink/80 md:text-right max-w-[360px]"
+            style={{ fontSize: "14px", lineHeight: 1.5 }}
           >
-            A smarter workspace for designers, editors, streamers, and digital creators.
+            A smarter workspace for designers, editors,<br />streamers, and digital creators.
           </p>
         </div>
 
-        <RuledLines />
-
-        {/* Main content: laptop + keyboard */}
-        <div className="grid lg:grid-cols-5 gap-8 items-center">
-          {/* Laptop placeholder */}
-          <div
-            className="lg:col-span-3 aspect-video bg-ink/5 border border-line flex items-center justify-center"
-            aria-label="NLE video editor on laptop"
-          >
-            <div className="flex flex-col items-center gap-3 opacity-30">
-              <div className="w-32 h-20 bg-ink/20 rounded-sm" />
-              <div className="flex gap-1">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="w-10 h-3 bg-violet/60 rounded-[1px]" />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Keyboard with LCD */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <div
-              className="w-full aspect-[16/9] bg-ink/5 border border-line flex flex-col justify-end p-4"
-              aria-label="Calibre keyboard with video timeline on LCD strip"
-            >
-              <span className="font-mono text-[length:var(--text-label)] text-mute uppercase tracking-widest mb-2">
-                Timeline mode
+        {/* Oversized headline — infinite marquee */}
+        <div
+          className="relative mt-16 overflow-hidden"
+          style={{ marginLeft: "-10vw", marginRight: "-10vw" }}
+          aria-label="Your Everyday Tools"
+        >
+          <div className="flex whitespace-nowrap calibre-marquee">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span
+                key={i}
+                className="font-mono text-ink shrink-0 pr-[0.3em]"
+                style={{
+                  fontSize: "clamp(60px, 14vw, 158px)",
+                  fontWeight: 300,
+                  letterSpacing: "-0.1em",
+                  lineHeight: 1,
+                }}
+                aria-hidden={i > 0}
+              >
+                Your Everyday Tools —
               </span>
-              <LcdDisplay state="timeline" />
-            </div>
-            <p className="font-sans text-mute" style={{ fontSize: "var(--text-small)" }}>
-              The LCD strip shows your video timeline — clip thumbnails, scrubber, timecode — without leaving your keys.
-            </p>
+            ))}
           </div>
+          <style>{`
+            @keyframes calibre-marquee-scroll {
+              from { transform: translate3d(0, 0, 0); }
+              to { transform: translate3d(-50%, 0, 0); }
+            }
+            .calibre-marquee {
+              animation: calibre-marquee-scroll 30s linear infinite;
+              will-change: transform;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .calibre-marquee { animation: none; }
+            }
+          `}</style>
         </div>
 
-        <SectionDivider label="§02 — Workflow" />
+        {/* Keyboard render */}
+        <div className="relative w-full flex justify-center -mt-[10vw]">
+          <div className="relative w-[88%] aspect-[4/5]">
+            <Image
+              src="/var-1.png"
+              alt="Calibre keyboard with monitor showing video editing timeline mirrored on the LCD strip"
+              fill
+              className="object-contain"
+              sizes="(min-width: 1440px) 1200px, 90vw"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

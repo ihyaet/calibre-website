@@ -33,7 +33,7 @@ export function Navbar() {
       )}
     >
       <nav
-        className="max-w-screen-xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between"
+        className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 h-16 flex items-center justify-between"
         aria-label="Main navigation"
       >
         {/* Left */}
@@ -42,7 +42,7 @@ export function Navbar() {
             <li key={item.label}>
               <a
                 href={item.href}
-                className="font-sans text-[length:var(--text-small)] text-ink/70 hover:text-ink transition-colors"
+                className="font-sans text-[18px] tracking-normal text-ink hover:opacity-70 transition-opacity"
               >
                 {item.label}
               </a>
@@ -65,7 +65,7 @@ export function Navbar() {
             <li key={item.label}>
               <a
                 href={item.href}
-                className="font-sans text-[length:var(--text-small)] text-ink/70 hover:text-ink transition-colors"
+                className="font-sans text-[18px] tracking-normal text-ink hover:opacity-70 transition-opacity"
               >
                 {item.label}
               </a>

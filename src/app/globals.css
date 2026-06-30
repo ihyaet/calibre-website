@@ -32,6 +32,10 @@
   --wash: radial-gradient(120% 120% at 70% 30%, #FBF1F7 0%, #F1EAFA 45%, #FFFFFF 100%);
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-ink);
