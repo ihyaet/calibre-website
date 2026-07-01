@@ -41,7 +41,7 @@ export function FooterCta() {
           </h2>
 
           {/* Shop Now knob — anchored to this 1440px container, hangs below */}
-          <div className="absolute left-5 sm:left-8 lg:left-10 z-20" style={{ bottom: "clamp(-552px, calc(-150px - 25vw), -150px)" }}>
+          <div className="absolute left-5 sm:left-8 lg:left-10 z-20" style={{ bottom: "clamp(-602px, calc(-150px - 28vw), -150px)" }}>
             <CtaButton href="#" size="lg" />
           </div>
         </div>
@@ -66,7 +66,7 @@ export function FooterCta() {
           <div className="flex-1" />
 
           {/* Blank spacer */}
-          <div style={{ height: "clamp(200px, 35vw, 500px)" }} aria-hidden="true" />
+          <div style={{ height: "clamp(200px, 62.5vw, 1000px)" }} aria-hidden="true" />
 
           {/* Giant ghost marquee */}
           <div

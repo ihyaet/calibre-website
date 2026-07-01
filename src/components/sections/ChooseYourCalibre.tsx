@@ -107,7 +107,7 @@ export function ChooseYourCalibre() {
         {/* Right column — all variant renders stacked */}
         <div
           ref={scrollRef}
-          className="flex-1 flex flex-col gap-16 min-w-0 overflow-y-auto [&::-webkit-scrollbar]:hidden"
+          className="flex-1 flex flex-col gap-5 min-w-0 overflow-y-auto [&::-webkit-scrollbar]:hidden"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {variants.map((v, i) => (
@@ -125,7 +125,7 @@ export function ChooseYourCalibre() {
                   priority={i === 0}
                 />
                 {active === i && (
-                  <div className="absolute bottom-6 left-8 z-10">
+                  <div className="hidden lg:block absolute bottom-6 left-8 z-10">
                     <CtaButton href="#" size="lg" />
                   </div>
                 )}
@@ -137,13 +137,13 @@ export function ChooseYourCalibre() {
               >
                 <span
                   className="font-mono text-white"
-                  style={{ fontSize: "32px", fontWeight: 300, letterSpacing: "-0.02em" }}
+                  style={{ fontSize: "clamp(18px, 4vw, 32px)", fontWeight: 300, letterSpacing: "-0.02em" }}
                 >
                   {v.name}
                 </span>
                 <span
                   className="font-mono text-white/70"
-                  style={{ fontSize: "24px", fontWeight: 300, letterSpacing: "0.04em" }}
+                  style={{ fontSize: "clamp(14px, 3vw, 24px)", fontWeight: 300, letterSpacing: "0.04em" }}
                 >
                   [ {v.price} ]
                 </span>

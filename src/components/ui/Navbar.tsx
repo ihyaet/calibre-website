@@ -53,7 +53,7 @@ export function Navbar() {
         {/* Wordmark */}
         <a
           href="/"
-          className="font-mono text-ink text-lg tracking-tight font-semibold absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
+          className="text-ink text-lg tracking-tight font-semibold font-sans lg:font-mono lg:absolute lg:left-1/2 lg:-translate-x-1/2"
           aria-label="Calibre home"
         >
           Calibre.

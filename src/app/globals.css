@@ -36,6 +36,18 @@ html, body {
   overflow-x: hidden;
 }
 
+@media (min-width: 1440px) {
+  .hero-keyboard {
+    right: -902px !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-keyboard {
+    right: -1030px !important;
+  }
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-ink);
