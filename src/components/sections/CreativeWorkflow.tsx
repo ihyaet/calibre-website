@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { RevealGroup } from "@/components/ui/RevealGroup";
+import { RevealItem } from "@/components/ui/RevealItem";
+import { RevealWords } from "@/components/ui/RevealWords";
 
 export function CreativeWorkflow() {
   return (
@@ -26,21 +29,25 @@ export function CreativeWorkflow() {
       <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pt-20 flex flex-col">
 
         {/* Top row */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-10 pb-10">
+        <RevealGroup as="div" className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-10 pb-10">
           <h2
             id="workflow-heading"
             className="font-mono text-ink"
             style={{ fontSize: "clamp(1.25rem, 2vw, 1.75rem)", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.2 }}
           >
-            Where Creativity Meets Control
+            <RevealItem index={0} stagger={110} duration={520} display="block">
+              Where Creativity Meets Control
+            </RevealItem>
           </h2>
-          <p
-            className="font-sans text-ink/80 md:text-right max-w-[360px]"
+          <RevealWords
+            text="A smarter workspace for designers, editors, streamers, and digital creators."
+            baseDelay={120}
+            stagger={12}
+            duration={320}
+            className="font-sans text-ink/80 md:justify-end max-w-[360px]"
             style={{ fontSize: "14px", lineHeight: 1.5 }}
-          >
-            A smarter workspace for designers, editors,<br />streamers, and digital creators.
-          </p>
-        </div>
+          />
+        </RevealGroup>
 
         {/* Oversized headline — infinite marquee */}
         <div

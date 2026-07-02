@@ -16,6 +16,7 @@ const NAV_RIGHT = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -23,14 +24,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 motion-reduce:!translate-y-0",
         scrolled
           ? "bg-paper/95 backdrop-blur border-b border-line shadow-sm"
           : "bg-transparent"
       )}
+      style={{
+        transform: entered ? "translateY(0)" : "translateY(-100%)",
+        transition:
+          "transform 700ms cubic-bezier(0.16,1,0.3,1), background-color 300ms, border-color 300ms, box-shadow 300ms",
+      }}
     >
       <nav
         className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 h-16 flex items-center justify-between"

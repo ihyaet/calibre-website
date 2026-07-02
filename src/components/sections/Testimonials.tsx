@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { RevealGroup } from "@/components/ui/RevealGroup";
+import { RevealItem } from "@/components/ui/RevealItem";
 
 const testimonials = [
   { name: "Sarah Lin", role: "Designer", image: "/testimonial-1.png" },
@@ -13,7 +15,7 @@ export function Testimonials() {
       style={{ background: "linear-gradient(to bottom, #2A072A, #110311)" }}
       aria-labelledby="testimonials-heading"
     >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 flex flex-col items-center" style={{ gap: "clamp(48px, 8vw, 100px)" }}>
+      <RevealGroup as="div" className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 flex flex-col items-center" style={{ gap: "clamp(48px, 8vw, 100px)" }}>
 
         {/* Centered headline */}
         <h2
@@ -21,9 +23,9 @@ export function Testimonials() {
           className="font-mono text-on-plum text-center"
           style={{ fontSize: "clamp(32px, 5.5vw, 52px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "-0.03em" }}
         >
-          From people with<br />
-          better things to do<br />
-          than write reviews.
+          <span className="block"><RevealItem index={0} stagger={110} duration={520} display="block">From people with</RevealItem></span>
+          <span className="block"><RevealItem index={1} stagger={110} duration={520} display="block">better things to do</RevealItem></span>
+          <span className="block"><RevealItem index={2} stagger={110} duration={520} display="block">than write reviews.</RevealItem></span>
         </h2>
 
         {/* 3-card row */}
@@ -102,7 +104,7 @@ export function Testimonials() {
             </div>
           </div>
         </div>
-      </div>
+      </RevealGroup>
     </section>
   );
 }

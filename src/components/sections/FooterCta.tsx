@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { CtaButton } from "@/components/ui/CtaButton";
+import { RevealGroup } from "@/components/ui/RevealGroup";
+import { RevealItem } from "@/components/ui/RevealItem";
+import { RevealWords } from "@/components/ui/RevealWords";
 import { FOOTER_NAV } from "@/data/footer-nav";
 import { FacebookLogo, InstagramLogo, LinkedinLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 
@@ -9,29 +12,29 @@ export function FooterCta() {
 
       {/* Dark top band — headline framed by ruled lines */}
       <div className="relative text-on-plum" style={{ background: "#110311" }}>
-        <div className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pt-[clamp(4rem,7vw,7rem)]">
+        <RevealGroup as="div" className="relative max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 pt-[clamp(4rem,7vw,7rem)]">
           <h2
             className="font-mono text-center text-white py-10"
             style={{ fontSize: "clamp(40px, 8vw, 88px)", fontWeight: 300, lineHeight: 1.1, letterSpacing: "-0.03em" }}
           >
-            <span className="relative block">
-              Engineered for the
+            <span className="relative flex justify-center">
+              <RevealItem index={0} stagger={110} duration={520} display="block">Engineered for the</RevealItem>
               <span
                 className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
                 style={{ background: "rgba(255,255,255,0.4)" }}
                 aria-hidden="true"
               />
             </span>
-            <span className="relative block">
-              hour before the world
+            <span className="relative flex justify-center">
+              <RevealItem index={1} stagger={110} duration={520} display="block">hour before the world</RevealItem>
               <span
                 className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
                 style={{ background: "rgba(255,255,255,0.4)" }}
                 aria-hidden="true"
               />
             </span>
-            <span className="relative block">
-              catches up
+            <span className="relative flex justify-center">
+              <RevealItem index={2} stagger={110} duration={520} display="block">catches up</RevealItem>
               <span
                 className="absolute left-[-100vw] right-[-100vw] h-px bottom-0"
                 style={{ background: "rgba(255,255,255,0.4)" }}
@@ -44,7 +47,7 @@ export function FooterCta() {
           <div className="absolute left-5 sm:left-8 lg:left-10 z-20" style={{ bottom: "clamp(-602px, calc(-150px - 28vw), -150px)" }}>
             <CtaButton href="#" size="lg" />
           </div>
-        </div>
+        </RevealGroup>
       </div>
 
       {/* CTA + footer with cta-footer.png as background */}
@@ -107,16 +110,17 @@ export function FooterCta() {
           </div>
 
           {/* Footer row — subcopy+socials on left, nav columns on right */}
-          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 pt-16 text-white">
+          <RevealGroup as="div" className="flex flex-col lg:flex-row lg:items-start justify-between gap-12 pt-16 text-white">
 
             {/* Left: subcopy + socials */}
             <div className="flex flex-col gap-6">
-              <p
+              <RevealWords
+                text="Every key, considered. A screen that whispers — never shouts. Engineered for people who think in long, unbroken stretches."
+                stagger={12}
+                duration={340}
                 className="font-sans max-w-[380px]"
                 style={{ fontSize: "16px", lineHeight: 1.6 }}
-              >
-                Every key, considered. A screen that whispers — never shouts. Engineered for people who think in long, unbroken stretches.
-              </p>
+              />
               <div className="flex gap-5 mt-2">
                 <a href="#" aria-label="Facebook" className="hover:opacity-70 transition-opacity">
                   <FacebookLogo size={22} weight="fill" />
@@ -135,23 +139,24 @@ export function FooterCta() {
 
             {/* Right: nav columns wrapped together with 40px gap */}
             <div className="flex" style={{ gap: "40px" }}>
-              {FOOTER_NAV.map((col) => (
+              {FOOTER_NAV.map((col, ci) => (
                 <div key={col.heading} className="flex flex-col gap-4">
-                  <span
-                    className="font-sans text-white/70"
-                    style={{ fontSize: "15px" }}
-                  >
-                    {col.heading}
+                  <span className="font-sans text-white/70 block" style={{ fontSize: "15px" }}>
+                    <RevealItem index={ci} baseDelay={120} stagger={70} duration={380}>
+                      {col.heading}
+                    </RevealItem>
                   </span>
                   <ul className="flex flex-col gap-3">
-                    {col.links.map((link) => (
+                    {col.links.map((link, li) => (
                       <li key={link.label}>
                         <a
                           href={link.href}
-                          className="font-sans hover:opacity-70 transition-opacity"
+                          className="font-sans hover:opacity-70 transition-opacity block"
                           style={{ fontSize: "15px" }}
                         >
-                          {link.label}
+                          <RevealItem index={li} baseDelay={200 + ci * 60} stagger={45} duration={360}>
+                            {link.label}
+                          </RevealItem>
                         </a>
                       </li>
                     ))}
@@ -159,7 +164,7 @@ export function FooterCta() {
                 </div>
               ))}
             </div>
-          </div>
+          </RevealGroup>
 
           {/* Bottom bar */}
           <div className="mt-10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t text-white" style={{ borderColor: "rgba(255,255,255,0.15)" }}>

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { MaximumFunctionality } from "@/components/sections/MaximumFunctionality";
 import { ProductPhilosophy } from "@/components/sections/ProductPhilosophy";
 import { ChooseYourCalibre } from "@/components/sections/ChooseYourCalibre";
 import { CreativeWorkflow } from "@/components/sections/CreativeWorkflow";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <MaximumFunctionality />
       <ProductPhilosophy />
       <ChooseYourCalibre />
       <CreativeWorkflow />

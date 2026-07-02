@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { CtaButton } from "@/components/ui/CtaButton";
+import { RevealGroup } from "@/components/ui/RevealGroup";
+import { RevealItem } from "@/components/ui/RevealItem";
+import { RevealWords } from "@/components/ui/RevealWords";
 
 const variants = [
   {
@@ -54,21 +57,24 @@ export function ChooseYourCalibre() {
         <div className="flex flex-col gap-8 w-full lg:w-[48%] flex-shrink-0">
 
           {/* Headline — 2 lines */}
-          <div className="flex flex-col gap-4">
+          <RevealGroup as="div" className="flex flex-col gap-4">
             <h2
               id="choose-heading"
               className="font-mono text-white"
               style={{ fontSize: "clamp(40px, 7vw, 64px)", fontWeight: 300, lineHeight: "1", letterSpacing: "-0.04em" }}
             >
-              Choose your<br />Calibre
+              <span className="block"><RevealItem index={0} stagger={110} duration={520} display="block">Choose your</RevealItem></span>
+              <span className="block"><RevealItem index={1} stagger={110} duration={520} display="block">Calibre</RevealItem></span>
             </h2>
-            <p
+            <RevealWords
+              text="Four keyboards, one philosophy. Pick the one that matches how you work."
+              baseDelay={240}
+              stagger={12}
+              duration={340}
               className="font-sans text-white w-full"
               style={{ fontSize: "18px", lineHeight: "1.6" }}
-            >
-              Four keyboards, one philosophy. Pick the one that matches how you work.
-            </p>
-          </div>
+            />
+          </RevealGroup>
 
           {/* Thumbnail rail — 180px wide images, 16:10 ratio, name on right */}
           <div className="hidden lg:flex flex-col gap-3">

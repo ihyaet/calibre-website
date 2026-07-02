@@ -2,17 +2,52 @@
 
 import { CtaButton } from "@/components/ui/CtaButton";
 import { TypewriterWord } from "@/components/ui/TypewriterWord";
+import { RevealGroup, useReveal } from "@/components/ui/RevealGroup";
+import { RevealItem } from "@/components/ui/RevealItem";
+import { RevealWords } from "@/components/ui/RevealWords";
 import Image from "next/image";
+
+const LINE_STAGGER = 110;
+
+function HeadlineLine({ index, children }: { index: number; children: React.ReactNode }) {
+  const inView = useReveal();
+  // The rule sweeps in just after its line's text starts rising.
+  const lineDelay = index * LINE_STAGGER + 160;
+  return (
+    <span className="relative block">
+      <RevealItem index={index} stagger={LINE_STAGGER} duration={520} display="block">
+        {children}
+      </RevealItem>
+      <span
+        className="absolute left-[-100vw] right-[-100vw] bottom-0"
+        style={{
+          background: "#5B3DF5",
+          height: "1px",
+          // Origin at the viewport's left edge (element starts at -100vw), so the
+          // rule appears to expand left -> right across the screen.
+          transformOrigin: "100vw 50%",
+          transform: inView ? "scaleX(1)" : "scaleX(0)",
+          transition: `transform 640ms cubic-bezier(0.65,0,0.35,1) ${lineDelay}ms`,
+          willChange: "transform",
+        }}
+        aria-hidden="true"
+      />
+    </span>
+  );
+}
 
 export function Hero() {
   return (
     <section
-      className="relative flex flex-col overflow-hidden pt-10 min-h-[80vh] lg:min-h-screen"
+      className="relative flex flex-col pt-10 min-h-[80vh] lg:min-h-screen"
       style={{ background: "#FFFFFF" }}
       aria-label="Hero"
     >
-      <div className="relative z-10 flex-1 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 flex flex-col justify-between py-8 sm:py-10 lg:py-14">
-
+      <RevealGroup
+        as="div"
+        className="relative z-10 flex-1 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-10 flex flex-col justify-between py-8 sm:py-10 lg:py-14"
+        threshold={0}
+      >
         {/* Main composition */}
         <div className="relative flex-1 flex flex-col justify-center lg:min-h-[70vh] gap-6 lg:gap-0">
 
@@ -48,7 +83,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Headline with 3 ruled lines — one below each line */}
+          {/* Headline with 3 ruled lines — each line rises in with a stagger */}
           <div className="relative z-10 flex flex-col w-full order-1 lg:order-none">
             <h1
               className="font-mono text-ink text-center lg:text-left lg:w-[60%]"
@@ -56,21 +91,14 @@ export function Hero() {
                 fontSize: "clamp(48px, 14vw, 158px)",
                 fontWeight: 300,
                 letterSpacing: "-0.06em",
-                lineHeight: "1.1",
+                lineHeight: "0.95",
               }}
             >
-              <span className="relative block">
-                Creative
-                <span className="absolute left-[-100vw] right-[-100vw] bottom-0" style={{ background: "#5B3DF5", height: "1px", transform: "translateZ(0)" }} aria-hidden="true" />
-              </span>
-              <span className="relative block">
-                Workflow,
-                <span className="absolute left-[-100vw] right-[-100vw] bottom-0" style={{ background: "#5B3DF5", height: "1px", transform: "translateZ(0)" }} aria-hidden="true" />
-              </span>
-              <span className="relative block">
+              <HeadlineLine index={0}>Creative</HeadlineLine>
+              <HeadlineLine index={1}>Workflow,</HeadlineLine>
+              <HeadlineLine index={2}>
                 <TypewriterWord word="Simplified" typeDuration={1000} holdDuration={5000} />
-                <span className="absolute left-[-100vw] right-[-100vw] bottom-0" style={{ background: "#5B3DF5", height: "1px", transform: "translateZ(0)" }} aria-hidden="true" />
-              </span>
+              </HeadlineLine>
             </h1>
           </div>
         </div>
@@ -78,15 +106,17 @@ export function Hero() {
         {/* Bottom bar — mobile: subtext then CTA centered; desktop: CTA left, subtext right */}
         <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-6 pt-6 items-center">
           <CtaButton href="#" size="lg" />
-          <p
-            className="font-sans text-ink max-w-[380px] text-center sm:text-right line-clamp-2 sm:line-clamp-none"
+          <RevealWords
+            text="Every key, considered. A screen that whispers never shouts. Engineered for people who think in long, unbroken stretches."
+            baseDelay={3 * LINE_STAGGER + 150}
+            stagger={14}
+            duration={320}
+            className="font-sans text-ink max-w-[620px] justify-center sm:justify-end"
             style={{ fontSize: "clamp(15px, 2.2vw, 18px)", lineHeight: "150%", letterSpacing: "-0.04em" }}
-          >
-            Every key, considered. A screen that whispers never shouts. Engineered for people who think in long, unbroken stretches.
-          </p>
+          />
         </div>
 
-      </div>
+      </RevealGroup>
     </section>
   );
 }
